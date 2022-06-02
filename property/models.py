@@ -56,7 +56,7 @@ class Flat(models.Model):
         blank=True,
         verbose_name='Кто лайкнул'
     )
-    owner_pure_phone = PhoneNumberField('Номер телефона', null=True, blank=True)
+    owner_pure_phone = PhoneNumberField('Номер владельца (форматированный)', null=True, blank=True)
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
@@ -75,6 +75,14 @@ class Complaint(models.Model):
         verbose_name='Квартира, на которую пожаловались'
     )
     text = models.TextField(verbose_name='Текст жалобы', null=True, blank=True)
+
+
+class Owner(models.Model):
+    name = models.CharField('ФИО владельца:', max_length=200)
+    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
+    owner_pure_phone = PhoneNumberField('Нормализованный номер владельца', null=True, blank=True)
+    flats = models.ManyToManyField('Flat', related_name='owners', verbose_name='Квартиры в собственности')
+
 
     def __str__(self):
         return self.flat
