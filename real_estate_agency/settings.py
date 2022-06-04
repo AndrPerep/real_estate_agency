@@ -11,7 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
-SECRET_KEY = env.str('SECRET_KEY', 'REPLACE_ME')
+secret_key_env = os.getenv('SECRET_KEY')
+django_salt_env = os.getenv('DJANGO_SALT')
+SECRET_KEY = os.getenv(secret_key_env, django_salt_env)
 
 DEBUG = env.bool('DEBUG', True)
 
