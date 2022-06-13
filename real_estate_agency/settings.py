@@ -13,7 +13,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 secret_key_env = os.getenv('SECRET_KEY')
 django_salt_env = os.getenv('DJANGO_SALT')
-SECRET_KEY = os.getenv(secret_key_env, django_salt_env)
+SECRET_KEY = os.getenv('secret_key_env', 'django_salt_env')
 
 DEBUG = env.bool('DEBUG', True)
 
