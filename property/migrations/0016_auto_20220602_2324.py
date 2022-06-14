@@ -10,7 +10,6 @@ def link_flats_and_owners(apps, schema_editor):
     for owner in Owner.objects.all():
         flats = Flat.objects.filter(owner=owner.name)
         owner.flats.set(flats)
-        owner.save()
 
 
 class Migration(migrations.Migration):
