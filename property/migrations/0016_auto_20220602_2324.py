@@ -8,8 +8,8 @@ def link_flats_and_owners(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
 
     for owner in Owner.objects.all():
-        flat = Flat.objects.filter(owner=owner.name)
-        owner.flats.set(flat)
+        flats = Flat.objects.filter(owner=owner.name)
+        owner.flats.set(flats)
         owner.save()
 
 
