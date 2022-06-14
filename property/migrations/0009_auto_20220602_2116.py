@@ -9,7 +9,7 @@ COUNTRY_CODE = 'RU'
 
 def full_owner_pure_phone(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         parsed_phonenumber = phonenumbers.parse(flat.owners_phonenumber, COUNTRY_CODE)
         if phonenumbers.is_valid_number(parsed_phonenumber):
             flat.owner_pure_phone = phonenumbers.format_number(

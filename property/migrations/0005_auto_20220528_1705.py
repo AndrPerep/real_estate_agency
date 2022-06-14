@@ -8,7 +8,7 @@ NEW_BUILDING_YEAR = 2015
 
 def fill_new_building(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         flat.new_building = flat.construction_year >= NEW_BUILDING_YEAR
         flat.save()
 
